@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset ="utf-8" />
+  <meta name="viewport" content = "width=device_width, initial-scale = 1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title> Formulaire d'inscription   </title>
+</head>
+<body class="container">
+  <h1 class="text-center m-5 border rounded">Formulaire d'inscription </h1>
+<div id="formulaire">
+  <form action="valider.php" method="post" class="w-100 mx-auto" id="myform">
+  
+    <div class="form-group form-check w-50 mx-auto">
+      <input class="form-check-input" type="radio" id="ba" name="type" value="Bol d'air">
+    <label class="form-check-label" for="ba">Bol d'air</label>
+  </div>  
+    <div class="form-group form-check w-50 mx-auto">
+      <input class="form-check-input" type="radio" id="Mba" name="type" value="Mini Bol d'air">
+    <label class="form-check-label" for="Mba">Mini bol d'air</label>
+  </div>
+  <div class="form-group w-50 mx-auto">
+    <label for="gender-select"> Catégorie:</label>
+
+  <select name="gender" id="gender-select" class="form-control" >
+      <option value="">--Choisissez une option--</option>
+      <option value="Homme">Homme</option>
+      <option value="Femme">Femme</option>
+      <option value="Mixte">Mixte</option>
+  </select>
+  </div>
+  <div class="form-group w-50 mx-auto">
+    <label for="club">Club</label> <input class="form-control" id="club" type="text" name="club" value="" />
+  </div>
+  <div class="form-group w-50 mx-auto">
+    <label for="repas">Nombre de repas de l'équipe</label> <input class="form-control" id="repas" type="number" name="repas"/>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      
+      <div class="form-group">
+        <h4 class="text-center">Capitaine</h4>
+        <label for="nom1">Nom</label>
+         <input id="nom1" type="text" name="nom1" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="prenom1">Prenom</label> <input class="form-control" id="prenom1" type="text" name="prenom1" />
+      </div>
+      <div class="form-group">
+        <label for="date1">Date de naissance</label> <input class="form-control" id="date1" type="date" name="date1" />
+      </div>
+      <div class="form-group">
+        <label for="tel1">Numéro de téléphone</label> <input class="form-control" id="tel1" type="tel" name="tel1"/>
+      </div>
+      <div class="form-group">
+        <label for="adresse1">Adresse</label> <input class="form-control" id="adresse1" type="text" name="adresse1"/>
+      </div>
+      <div class="form-group">
+        <label for="email1">Email</label> <input class="form-control" id="email1" type="email" name="email1"/>
+      </div>      
+    </div>
+    <div class="col-sm-5 offset-2">
+      <div class="form-group">
+        <h4 class="text-center">Equipier</h4>
+        <label for="nom2">Nom</label>
+         <input id="nom2" type="text" name="nom2" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="prenom2">Prenom</label> <input class="form-control" id="prenom2" type="text" name="prenom2" />
+      </div>
+      <div class="form-group">
+        <label for="date2">Date de naissance</label> <input class="form-control" id="date2" type="date" name="date2" />
+      </div>
+      <div class="form-group">
+        <label for="tel2">Numéro de téléphone</label> <input class="form-control" id="tel2" type="tel" name="tel2"/>
+      </div>
+      <div class="form-group">
+        <label for="adresse2">Adresse</label> <input class="form-control" id="adresse2" type="text" name="adresse2" />
+      </div>
+      <div class="form-group">
+        <label for="email2">Email</label> <input class="form-control" id="email2" type="email" name="email2"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mx-auto w-25">
+    <input type="submit" value="Confirmer" class="btn btn-primary"> <input type="submit" value="Annuler" class="btn btn-danger">
+  </div>
+ 
+</form>
+</div>
+<style>
+
+  #formulaire{
+    background: url("0a-Logo_CKC.png") no-repeat deepskyblue center;
+    border-radius: 5em;
+  }
+  
+</style>
+<script>
+  $("#myform").submit(function(e){
+    e.preventDefault();
+    var data=$(this).serialize();
+    $.ajax({
+      method:'POST',
+      url:'valider.php',
+      data:data, 
+      success:redirection,
+      error:function(e,a,erreur){
+        console.log(erreur);
+      }
+    })
+
+  })
+  function redirection(e){
+    alert(e);
+    document.location.href="formul2.html";
+  }
+</script>
+  
+</body>
+</html>

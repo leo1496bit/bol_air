@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset ="utf-8" />
+  <meta name="viewport" content = "width=device_width, initial-scale = 1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title> Justificatifs  </title>
+</head>
+<body class="container ">
+  
+    <h1 class="m-5 text-center">Inscription du participant</h1>
+    <div class="mx-auto w-50 text-break" >
+  <h4>Les Justificatifs suivant doivent être fournis : </h4>
+  <ul><li class="font-weight-bold">Une pièce d'identité (Passeport,permis de conduire,...)</li>
+    
+     <li><span class="font-weight-bold">Un certificat médical </span>datant de moins d'un an de non contre indication à la pratique du VTT
+       , de la course à pied sur route (artcile 35 de la loi du 16/07/1984) et
+        du canoe ou une licence sportive attestant les trois disciplines.</li> 
+        
+      </ul>
+      <form action="upload.php" method="post"  enctype="multipart/form-data">
+        <h3 class="text-center">Capitaine</h3>
+        <div class="custom-file mb-3">
+          <label for="identite1" class="custom-file-label">Piece d'identité:</label>
+
+<input type="file" class="custom-file-input"
+       id="identite1" name="identite1">
+        </div>
+        <div class="custom-file mb-3" >
+          <label for="certificat1" class="custom-file-label">Certificat médical:</label>
+
+<input type="file" class="custom-file-input"
+       id="certificat1" name="certificat1">
+
+        </div>
+        <h3 class="text-center">Coéquipier</h3>
+        <div class="custom-file mb-3">
+          <label for="identite2" class="custom-file-label">Piece d'identité:</label>
+
+<input type="file" class="custom-file-input"
+       id="identite2" name="identite2">
+        </div>
+        <div class="custom-file mb-3" >
+          <label for="certificat2" class="custom-file-label">Certificat médical:</label>
+
+<input type="file" class="custom-file-input"
+       id="certificat2" name="certificat2">
+
+        </div>
+        <p> Nous nous engageons à porter un casque lors de l'evènement et de respecter le code de le route.
+          Nous nous engageons à porter un gilet et des chaussures fermées pour le canoe.
+          En cas d'absence Nous ne serons pas remboursé.
+          En cas de non respect de l'une de ces reglementations, l'organsation a le droit de nous disqualifier.</p>
+
+          <div>
+             <input type="checkbox"  v-on:click="change" id="scales" name="scales"
+                    checked>
+             <label for="scales" >J'ai lu et j'accepte les conditions.</label>
+           </div>
+
+           <input type="submit" value="Confirmer" :disabled="bouton" class="btn btn-primary"> <input class="btn btn-danger" type="submit" value="Retour">
+      </form>
+        
+
+      
+       
+  </div>
+  <style>
+    .mx-auto.w-50{
+      background: url("0a-Logo_CKC.png") no-repeat deepskyblue;
+    }
+    body{
+      color:black;
+    }
+    @media only screen and (max-width:768px){
+      .mx-auto.w-50{
+      width: 100%;
+    }
+    }
+  </style>
+  <script>
+          var app= new Vue({
+            el:'form',
+            data:{
+                bouton:false
+            },
+            methods:{
+              change:function(e){
+                this.bouton=!this.bouton
+              }
+            }
+        })    
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset ="utf-8" />
+  <meta name="viewport" content = "width=device_width, initial-scale = 1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title> Formulaire d'inscription   </title>
+</head>
+<body class="container">
+  <h1 class="text-center m-5 border rounded">Devenir un benévole</h1>
+<div id=formulaire>
+  <form action="validerBenev.php" class="w-50 mx-auto" id="myform" method="POST">
+  <div class="form-group">
+    <label for="nom">Nom</label>
+     <input id="Nom" type="text" name="nom" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="prenom">Prenom</label> <input class="form-control" id="prenom" type="text" name="prenom" value="" />
+  </div>
+  <div class="form-group">
+    <label for="date">Date de naissance</label> <input class="form-control" id="date" type="date" name="date" value="" />
+  </div>
+  <div class="form-group">
+    <label for="tel">Numéro de téléphone</label> <input class="form-control" id="tel" type="tel" name="tel" value="" />
+  </div>
+  <div class="form-group">
+    <label for="adresse">Adresse</label> <input class="form-control" id="adresse" type="text" name="adresse" value="" />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label> <input class="form-control" id="email" type="email" name="email" value="" />
+  </div>
+  <div class="form-group form-check">
+    <input class="form-check-input" v-on:click="change" type="checkbox" id="permis" name="permis" value="oui">
+  <label class="form-check-label" for="permis">J'ai le permis</label>
+</div>  
+  <div class="form-group form-check">
+    <input class="form-check-input" type="checkbox" id="brevet" name="brevet" value="oui">
+  <label class="form-check-label" for="brevet">J'ai un brevet de secourisme</label>
+  
+</div>
+<div class="form-group">
+  <label for="numPerm">Numéro du permis:</label>
+  <input type="text" :disabled="bouton" class="form-control" name="numPerm" id="numPerm">
+</div>
+<div class="form-group">
+  <label for="LieuPerm">Lieu du Permis:</label>
+  <input type="text" :disabled="bouton" class="form-control" name="LieuPerm" id="LieuPerm">
+</div>
+<div class="form-group">
+  <label for="datePerm">Date du permis: </label>
+  <input type="date" :disabled="bouton" class="form-control"name="datePerm" id="datePerm">
+</div>
+<div class="form-group">
+  <label for="sup">Infos supplémentaires</label>
+  <textarea name="sup" id="sup" cols="30" rows="10" class="form-control"></textarea>
+</div>
+  <div class="form-group">
+    <input type="submit" value="Confirmer" class="btn btn-primary"> <input type="submit" value="Annuler" class="btn btn-danger">
+  </div>
+</form>
+</div>
+
+
+<style>
+
+  #formulaire{
+    background: url("0a-Logo_CKC.png") no-repeat deepskyblue center;
+    border-radius: 5em;
+  }
+  
+</style>
+<script>
+   var app= new Vue({
+            el:'form',
+            data:{
+                bouton:true
+            },
+            methods:{
+              change:function(e){
+                this.bouton=!this.bouton
+              }
+            }
+        })    
+  $("#myform").submit(function(e){
+    e.preventDefault();
+    var data=$(this).serialize();
+    $.ajax({
+      method:'POST',
+      url:'validerBenev.php',
+      data:data, 
+      success:retour,
+      error:function(e){
+        console.log(e);
+      }
+    })
+
+  })
+  function retour(e){
+    prompt("Inscription réuissi. \nVotre code pour vous connectez à l'application est le suivant: \n\n"+e)
+    document.location.href="index.html "
+  }
+</script>
+</body>
+</html>
